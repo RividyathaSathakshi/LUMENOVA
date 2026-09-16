@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 250 246 240;
+  --bg-panel: 255 255 255;
+  --bg-panel-alt: 240 234 224;
+  --ink: 30 36 56;
+  --ink-dim: 91 97 120;
+  --accent-gold: 201 138 61;
+  --accent-rose: 184 92 86;
+  --success: 62 138 109;
+  --warning: 201 138 61;
+  --danger: 184 72 62;
+  --border: 30 36 56;
+  --border-alpha: 0.12;
+}
+
+:root[data-theme="dark"] {
+  --bg: 20 24 42;
+  --bg-panel: 28 33 56;
+  --bg-panel-alt: 38 44 72;
+  --ink: 243 239 230;
+  --ink-dim: 166 171 196;
+  --accent-gold: 224 169 79;
+  --accent-rose: 217 123 114;
+  --success: 95 184 148;
+  --warning: 224 169 79;
+  --danger: 217 105 93;
+  --border: 243 239 230;
+  --border-alpha: 0.14;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: 20 24 42;
+    --bg-panel: 28 33 56;
+    --bg-panel-alt: 38 44 72;
+    --ink: 243 239 230;
+    --ink-dim: 166 171 196;
+    --accent-gold: 224 169 79;
+    --accent-rose: 217 123 114;
+    --success: 95 184 148;
+    --warning: 224 169 79;
+    --danger: 217 105 93;
+    --border: 243 239 230;
+    --border-alpha: 0.14;
+  }
+}
+
+* {
+  border-color: rgb(var(--border) / var(--border-alpha));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: rgb(var(--bg));
+  color: rgb(var(--ink));
+  font-family: "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+h1, h2, h3, .font-display {
+  font-family: "Fraunces", Georgia, serif;
+}
+
+::selection {
+  background-color: rgb(var(--accent-gold));
+  color: #1e2438;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid rgb(var(--accent-gold));
+  outline-offset: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(var(--bg-panel-alt));
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--ink-dim));
+  border-radius: 8px;
+}
