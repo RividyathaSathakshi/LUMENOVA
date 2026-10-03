@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [claude/lumenova-health-screening-y1p0zx]
+    branches: [claude/lumenova-health-screening-y1p0zx, ccr-2cb60886-yhjnpd]
   workflow_dispatch:
 
 permissions:
@@ -24,6 +24,12 @@ jobs:
           node-version: 20
       - run: npm ci
       - run: npm run build
+      # Gubbi's site, published alongside Lumenova at /LUMENOVA/for-gubbi/
+      - run: npm ci
+        working-directory: our-little-universe
+      - run: npm run build
+        working-directory: our-little-universe
+      - run: cp -r our-little-universe/dist dist/for-gubbi
       - uses: actions/configure-pages@v5
         with:
           enablement: true
