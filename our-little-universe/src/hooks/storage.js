@@ -1,0 +1,19 @@
+// localStorage can throw (private mode, blocked storage) — never let it break the site.
+const PREFIX = 'olu:'
+
+export function load(key, fallback) {
+  try {
+    const raw = window.localStorage.getItem(PREFIX + key)
+    return raw == null ? fallback : JSON.parse(raw)
+  } catch {
+    return fallback
+  }
+}
+
+export function save(key, value) {
+  try {
+    window.localStorage.setItem(PREFIX + key, JSON.stringify(value))
+  } catch {
+    /* ignore */
+  }
+}
